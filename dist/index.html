@@ -17,34 +17,41 @@
         </div>
       </div>
       <div class="welcome-message">
-        <h2 class="lets-explore">Let's Explore</h2>
+        <h2 class="lets-explore">Where to next, Prissilla?!</h2>
+        <img class="world-icon" src='images/pin.png' alt="world cartoon photo with red pins in 3 different locations">
       </div>
     </header>
     <main>
-      <div class="cost-container"></div>
+      <div class="cost-container">
+        <div class="cost-information">Yearly Exploration Cost:
+          <text>$2,304</text>
+      </div>
+      </div>
       <div class="card-container">
         <div class="exploration-container">
           <div class="past-explorations"></div>
           <div class="pending-explorations"></div>
           <div class="upcoming-explorations"></div>
         </div>
-        <form action="/" method="POST" class="exploration-request-form">
-         <fieldset>
-          <legend>Exploration Request:</legend>
-          <label for="date-selection">Date:</label>
-          <input type="date" id="date-selection" name="date-selection" required>
-          <label for="days-count"># of Days:</label>
-          <input type="number" id="days-count" name="days-count" min="1" max="30" value="1" required>
-          <label for="traveler-count"># of Explorers:</label>
-          <input type="number" id="traveler-count" name="traveler-count" min="1" max="12" value="1" required>
-          <label for="destination-list">Destination:</label>
-          <input list="destinations" name="destination" placeholder="Select Exploration" required>
-          <datalist id="destinations">
-            <option value="France">
-          </datalist>
-         </fieldset>
-          <button type="submit" class="exploration-request-submit-button">Submit</button>
-        </form>
+        <div class="exploration-request-container">
+          <form action="/" method="POST" class="exploration-request-form">
+          <fieldset>
+            <legend>Exploration Request:</legend>
+            <label for="date-selection">Date:</label>
+            <input type="date" id="date-selection" name="date-selection" required>
+            <label for="days-count"># of Days:</label>
+            <input type="number" id="days-count" name="days-count" min="1" max="30" value="1" required>
+            <label for="traveler-count"># of Explorers:</label>
+            <input type="number" id="traveler-count" name="traveler-count" min="1" max="12" value="1" required>
+            <label for="destination-list">Destination:</label>
+            <input list="destinations" name="destination" placeholder="Select Exploration" required>
+            <datalist id="destinations">
+              <option value="France">
+            </datalist>
+          </fieldset>
+            <button type="submit" class="exploration-request-submit-button">Submit</button>
+          </form>
+      </div>
       </div>
     </main>
     <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
