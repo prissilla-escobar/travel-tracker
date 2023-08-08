@@ -1,5 +1,5 @@
 import './css/styles.css';
-import './images/turing-logo.png'
+import './images/pin.png'
 
 import {
     promises,
