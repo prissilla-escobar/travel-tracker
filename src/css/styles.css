@@ -129,9 +129,17 @@ main {
 }
 
 .past-explorations, .pending-explorations, .upcoming-explorations {
+  display: flex;
+  justify-content: center;
   width: 30%;
   height: 80%;
   border:3px solid #c9a37c;
+  color:#5c55e1;
+}
+
+h3 {
+  margin-top: 10px;
+  font-weight: bolder;
 }
 
 .exploration-request-container {
