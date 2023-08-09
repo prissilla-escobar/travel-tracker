@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Developer: P. Escobar, Mod2 student, Travel Tracker Website">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <title>Explore the World, Explore You</title>
   </head>
@@ -29,9 +30,15 @@
       </div>
       <div class="card-container">
         <div class="exploration-container">
-          <div class="past-explorations"></div>
-          <div class="pending-explorations"></div>
-          <div class="upcoming-explorations"></div>
+          <div class="past-explorations">
+            <h3>Past Explorations:</h3>
+          </div>
+          <div class="pending-explorations">
+            <h3>Pending Explorations:</h3>
+          </div>
+          <div class="upcoming-explorations">
+            <h3>Upcoming Explorations:</h3>
+          </div>
         </div>
         <div class="exploration-request-container">
           <form action="/" method="POST" class="exploration-request-form">
@@ -44,9 +51,8 @@
             <label for="traveler-count"># of Explorers:</label>
             <input type="number" id="traveler-count" name="traveler-count" min="1" max="12" value="1" required>
             <label for="destination-list">Destination:</label>
-            <input list="destinations" name="destination" placeholder="Select Exploration" required>
+            <input list="destinations" name="destination" placeholder="Select Exploration" id="destination-list" required>
             <datalist id="destinations">
-              <option value="France">
             </datalist>
           </fieldset>
             <button type="submit" class="exploration-request-submit-button">Submit</button>
