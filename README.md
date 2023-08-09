@@ -22,7 +22,6 @@ This travel tracker app allows users to organize and review their past, current,
 ![]()
 
 ## Context
-## Context
 I completed this project in week five of Mod 2 at the Front End development program at Turing School of Software & Design. I spent pproximately 35 hours on this project. 
 
 I used HTML, CSS and JavaScript written in the code editor VS Code with Webpack installed. GitHub was used to store and manage my code so though I completed all code on my local machine. For organization, I utilized a GitHub project board to keep track of issues.
