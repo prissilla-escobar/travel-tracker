@@ -2,7 +2,7 @@ export const sampleTripsData = {
     trips:[
       {
         id: 1,
-        userID: 44,
+        userID: 4,
         destinationID: 49,
         travelers: 1,
         date: "2022/09/16",
@@ -12,12 +12,12 @@ export const sampleTripsData = {
       },
       {
         id: 2,
-        userID: 35,
+        userID: 5,
         destinationID: 25,
         travelers: 5,
-        date: "2022/10/04",
+        date: "2023/10/04",
         duration: 18,
-        status: "approved",
+        status: "pending",
         suggestedActivities: []
       },
       {
@@ -32,7 +32,7 @@ export const sampleTripsData = {
       },
       {
         id: 4,
-        userID: 43,
+        userID: 3,
         destinationID: 14,
         travelers: 2,
         date: "2022/02/25",
@@ -42,7 +42,7 @@ export const sampleTripsData = {
       },
       {
         id: 5,
-        userID: 42,
+        userID: 2,
         destinationID: 29,
         travelers: 3,
         date: "2022/04/30",
@@ -52,7 +52,7 @@ export const sampleTripsData = {
       },
       {
         id: 6,
-        userID: 29,
+        userID: 2,
         destinationID: 35,
         travelers: 3,
         date: "2022/06/29",
@@ -62,17 +62,17 @@ export const sampleTripsData = {
       },
       {
         id: 7,
-        userID: 37,
-        destinationID: 17,
+        userID: 1,
+        destinationID: 11,
         travelers: 5,
-        date: "2022/05/28",
+        date: "2023/05/28",
         duration: 20,
         status: "approved",
         suggestedActivities: []
       },
       {
         id: 8,
-        userID: 36,
+        userID: 3,
         destinationID: 39,
         travelers: 6,
         date: "2022/02/07",
@@ -82,7 +82,7 @@ export const sampleTripsData = {
       },
       {
         id: 9,
-        userID: 24,
+        userID: 4,
         destinationID: 19,
         travelers: 5,
         date: "2022/12/19",
@@ -92,17 +92,17 @@ export const sampleTripsData = {
       },
       {
         id: 10,
-        userID: 9,
+        userID: 5,
         destinationID: 50,
         travelers: 6,
-        date: "2022/07/23",
+        date: "2023/07/23",
         duration: 17,
         status: "approved",
         suggestedActivities: []
       },
       {
         id: 11,
-        userID: 50,
+        userID: 5,
         destinationID: 5,
         travelers: 4,
         date: "2022/10/14",
@@ -112,7 +112,7 @@ export const sampleTripsData = {
       },
       {
         id: 12,
-        userID: 33,
+        userID: 3,
         destinationID: 33,
         travelers: 6,
         date: "2022/10/17",
@@ -122,17 +122,17 @@ export const sampleTripsData = {
       },
       {
         id: 13,
-        userID: 14,
+        userID: 1,
         destinationID: 12,
         travelers: 1,
-        date: "2022/02/12",
+        date: "2024/02/12",
         duration: 11,
         status: "approved",
         suggestedActivities: []
       },
       {
         id: 14,
-        userID: 19,
+        userID: 2,
         destinationID: 35,
         travelers: 1,
         date: "2022/09/24",
@@ -142,7 +142,7 @@ export const sampleTripsData = {
       },
       {
         id: 15,
-        userID: 50,
+        userID: 5,
         destinationID: 13,
         travelers: 3,
         date: "2022/07/04",
@@ -152,7 +152,7 @@ export const sampleTripsData = {
       },
       {
         id: 16,
-        userID: 19,
+        userID: 9,
         destinationID: 27,
         travelers: 1,
         date: "2022/11/20",
@@ -162,7 +162,7 @@ export const sampleTripsData = {
       },
       {
         id: 17,
-        userID: 28,
+        userID: 2,
         destinationID: 31,
         travelers: 1,
         date: "2022/10/30",
@@ -172,7 +172,7 @@ export const sampleTripsData = {
       },
       {
         id: 18,
-        userID: 18,
+        userID: 8,
         destinationID: 2,
         travelers: 2,
         date: "2022/09/25",
@@ -182,17 +182,17 @@ export const sampleTripsData = {
       },
       {
         id: 19,
-        userID: 47,
+        userID: 4,
         destinationID: 47,
         travelers: 4,
-        date: "2022/07/21",
+        date: "2022/10/21",
         duration: 5,
         status: "approved",
         suggestedActivities: []
       },
       {
         id: 20,
-        userID: 41,
+        userID: 4,
         destinationID: 19,
         travelers: 4,
         date: "2022/10/05",
@@ -202,7 +202,7 @@ export const sampleTripsData = {
       },
       {
         id: 21,
-        userID: 12,
+        userID: 2,
         destinationID: 10,
         travelers: 1,
         date: "2022/01/28",
@@ -212,7 +212,7 @@ export const sampleTripsData = {
       },
       {
         id: 22,
-        userID: 22,
+        userID: 2,
         destinationID: 9,
         travelers: 4,
         date: "2022/05/01",
@@ -222,7 +222,7 @@ export const sampleTripsData = {
       },
       {
         id: 23,
-        userID: 14,
+        userID: 1,
         destinationID: 24,
         travelers: 6,
         date: "2022/01/02",
@@ -232,7 +232,7 @@ export const sampleTripsData = {
       },
       {
         id: 24,
-        userID: 46,
+        userID: 1,
         destinationID: 26,
         travelers: 5,
         date: "2019/11/15",

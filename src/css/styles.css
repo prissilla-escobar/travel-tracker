@@ -105,13 +105,14 @@ main {
 .cost-information {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100%;
   width: 20%;
   color:#c9a37c;
   font-size: 20px;
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .card-container {

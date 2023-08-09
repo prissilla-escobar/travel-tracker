@@ -24,20 +24,24 @@
     </header>
     <main>
       <div class="cost-container">
-        <div class="cost-information">Yearly Exploration Cost:
-          <text>$2,304</text>
-      </div>
+        <div class="cost-information">
+          <text>2023 Exploration Cost:</text>
+          <text class="total-cost">$2,304</text>
+        </div>
       </div>
       <div class="card-container">
         <div class="exploration-container">
           <div class="past-explorations">
             <h3>Past Explorations:</h3>
+            <div class="display-past-trips"></div>
           </div>
           <div class="pending-explorations">
             <h3>Pending Explorations:</h3>
+            <div class="display-pending-trips"></div>
           </div>
           <div class="upcoming-explorations">
             <h3>Upcoming Explorations:</h3>
+            <div class="display-upcoming-trips"></div>
           </div>
         </div>
         <div class="exploration-request-container">
@@ -55,7 +59,7 @@
             <datalist id="destinations">
             </datalist>
           </fieldset>
-            <button type="submit" class="exploration-request-submit-button">Submit</button>
+            <button type="submit" id="exploration-request-submit" class="exploration-request-submit-button">Submit</button>
           </form>
       </div>
       </div>
