@@ -18,7 +18,7 @@ This travel tracker app allows users to organize and review their past, current,
 - run npm install
 - run npm start
 
-- ## Preview of App
+## Preview of App
 ![]()
 
 ## Context
