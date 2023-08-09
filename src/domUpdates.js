@@ -1,14 +1,10 @@
 import {
-    dataModel
-  } from '../src/scripts'
-
-  import {
     destinations
   } from './helper-functions'
 
   import {
-      calculateYearlyCost,
-    currentUser, getUserPastDestinations
+    calculateYearlyCost,
+    getUserTripsData,
   } from './data-model'
 
   var destinationOptions = document.querySelector('#destinations')
@@ -30,40 +26,60 @@ import {
     let wholeName = currentUser.name
     let firstNameOnly = wholeName.split(' ')
 
-    welcome.innerText = `Where to next, ${firstNameOnly[0]}`
+    welcome.innerText = `Where to next, ${firstNameOnly[0]}?!`
   }
 
-  const displayTotalCost = (currentUser) => {
-    const cost = calculateYearlyCost(currentUser.id, dataModel.trips, dataModel.destinations)
+  const displayTotalCost = (currentUser, dataModel) => {
+    const cost = calculateYearlyCost(currentUser, dataModel)
     totalCost.innerText = ''
     totalCost.innerText += `${cost}`
   }
 
-  const displayTrips = (dataModel) => {
-    const past = getUserPastDestinations(dataModel.currentUser.id, dataModel.trips)
-    console.log(past)
+  const displayTrips = (currentUser, dataModel) => {
+    const places = getUserTripsData(currentUser, dataModel)
+    const pastPlaces = places.destinations.past.map(dest => {return dest.destination}).map(place => `> ${place} <br>`).join('')
 
-    const pastTripsData = past.map(user => user.destinationID)
-    console.log(pastTripsData)
-  
-    const ubicaciones = dataModel.destinations.destinations.filter(trip => {
-        let ubicacion = []
-        const test = pastTripsData.forEach(id => {
-            if (currentUser.destinationID === id) {
-            ubicacion.push(trip)
-            }
-        })
-    })
-    console.log(ubicaciones)
-
-    pastTrips.innerHTML = ''
-    pastTrips.innerHTML = `${pastTripsData}<br>`
+    const pendingPlaces = places.destinations.pending.map(dest => {return dest.destination}).map(place => `> ${place} <br>`).join('')
+    const upcomingPlaces = places.destinations.upcoming.map(dest => {return dest.destination}).map(place => `> ${place} <br>`).join('')
     
-}
+    pastTrips.innerHTML = ''
+    if (pastPlaces.length === 0) {
+      pastTrips.innerHTML = `You do not have any past explorations! <br> Don\'t let this box be empty anymore, go explore!`
+    } else {
+      pastTrips.innerHTML += `
+       ${pastPlaces}
+      `
+    }
+    pendingTrips.innerHTML = ''
+    if (pendingPlaces.length === 0) {
+      pendingTrips.innerHTML += 'You do not have any pending explorations!'
+      } else {
+        pendingTrips.innerHTML += `
+       ${pendingPlaces}
+      `
+      }
 
+    upcomingTrips.innerHTML = ''
+    if (upcomingPlaces.length === 0) {
+          upcomingTrips.innerHTML += `You do not have any upcoming explorations!<br> Time to start exploring!`
+      } else {
+        upcomingTrips.innerHTML += `
+        ${upcomingPlaces}
+        `
+      }
+  }
+
+  const renderPageLoad = (dataModel) => {
+    displayDestinationOptions()
+    displayUser(dataModel.currentUser)
+    displayTotalCost(dataModel.currentUser, dataModel)
+    displayTrips(dataModel.currentUser, dataModel)
+  }
+  
   export {
     displayDestinationOptions,
     displayUser,
     displayTotalCost,
-    displayTrips
+    displayTrips,
+    renderPageLoad
   }
