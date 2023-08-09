@@ -1,4 +1,4 @@
-import './css/styles.css';
+import './css/styles.css'
 import './images/pin.png'
 
 import {
@@ -50,8 +50,8 @@ import {
       const travelerCount = document.getElementById('traveler-count').value
       const destination = document.getElementById('destination-list').value
 
-      const destinationObject = dataModel.destinations.destinations.find(dest => dest.destination === destination);
-      const destinationID = destinationObject ? destinationObject.id : null;
+      const destinationObject = dataModel.destinations.destinations.find(dest => dest.destination === destination)
+      const destinationID = destinationObject ? destinationObject.id : null
 
       const formattedDate = startingDate.toISOString().substring(0, 10).replace(/-/g, '/')
 

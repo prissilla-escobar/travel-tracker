@@ -86,7 +86,7 @@ const calculateYearlyCost = (currentUser, dataModel) => {
         } else {
             return acc
         }
-    }, 0);
+    }, 0)
         return totalCost * 1.1
 }
 
