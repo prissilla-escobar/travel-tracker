@@ -1,4 +1,4 @@
-import './css/styles.css';
+import './css/styles.css'
 import './images/pin.png'
 
 import {
@@ -8,10 +8,7 @@ import {
   } from './apiCalls'
 
   import {
-    displayDestinationOptions,
-    displayUser,
-    displayTotalCost,
-    displayTrips,
+    renderPageLoad
   } from './domUpdates'
 
   import {
@@ -20,11 +17,8 @@ import {
 
   import {
     getUserData,
-    currentUser,
-    getUserPastDestinations,
-    getUserPendingDestinations,
-    getUserUpcomingDestinations,
-    calculateYearlyCost
+    calculateYearlyCost,
+    getUserTripsData
   } from './data-model'
 
   var dataModel = {}
@@ -35,18 +29,13 @@ import {
       dataModel.traveler = response[0]
       dataModel.trips = response[1]
       dataModel.destinations = response[2]
-      dataModel.currentUser = getUserData(48, response[0])
-      getUserPastDestinations(48, response[1])
-      getUserPendingDestinations(48, response[1])
-      getUserUpcomingDestinations(48, response[1])
-      calculateYearlyCost(48, response[1], response[2])
+      dataModel.currentUser = getUserData(44, response[0])
+      calculateYearlyCost(dataModel.currentUser, dataModel)
+      getUserTripsData(dataModel.currentUser, dataModel)
+      getDestinationsList()
   })
     .then(data => {
-      getDestinationsList()
-      displayDestinationOptions()
-      displayUser(dataModel.currentUser)
-      displayTotalCost(dataModel.currentUser)
-      displayTrips(dataModel)
+      renderPageLoad(dataModel)
     })
     .catch(error => console.log('ERROR', error))
   })
@@ -61,11 +50,10 @@ import {
       const travelerCount = document.getElementById('traveler-count').value
       const destination = document.getElementById('destination-list').value
 
-      const destinationObject = dataModel.destinations.destinations.find(dest => dest.destination === destination);
-      const destinationID = destinationObject ? destinationObject.id : null;
+      const destinationObject = dataModel.destinations.destinations.find(dest => dest.destination === destination)
+      const destinationID = destinationObject ? destinationObject.id : null
 
       const formattedDate = startingDate.toISOString().substring(0, 10).replace(/-/g, '/')
-
 
       let newTrip = {
         id: dataModel.trips.trips.length + 1,
@@ -95,7 +83,7 @@ import {
         fetchUserData('trips')
         .then(data => {
             dataModel.trips = data
-            displayTrips(dataModel.currentUser)
+            renderPageLoad(dataModel)
         })
     })
     .catch(error => console.log('ERROR', error))

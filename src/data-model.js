@@ -11,85 +11,60 @@ const getUserData = ((userId, dataList) => {
     return currentUser
 })
 
-// const userTripsData = ((currentUser, destinationsDataList, tripsDataList) => {
-//     let filteredByID = destinationsDataList.destinations.reduce((acc, curr) => {
-//         if (curr.id === tripsDataList.trips.destinationID && currentUser.id === tripsDataList.trips.userID) {
-//             acc.push(currentUser.destinations = {
-//                 past: [],
-//                 pending: [],
-//                 upcoming: []
-//             })
-//             currentUser.destinations.past.push(curr)
-//         }
-//         // return acc
-//         console.log(acc)
-//     }, [])
-//     return filteredByID
-// })
-
-const getUserPastDestinations = ((userID, dataList) => {
-    if (!dataList.trips.some(trip => trip.userID === userID)) {
+const getUserTripsData = (currentUser, dataModel) => {
+    if (!dataModel.trips.trips.some(trip => trip.userID === currentUser.id)) {
         return 'Invalid User'
     }
-    const pastDestinations = dataList.trips.filter(trip => {
-         return trip.userID === userID && new Date(trip.date) < new Date()
-    })
-    const sortedPastDestinations = pastDestinations.sort((a,b) => {
-        const dateA = new Date(a.date).getTime()
-        const dateB = new Date(b.date).getTime()
-        return dateB - dateA
-    })
-    
-    return sortedPastDestinations
-})
 
-const getUserPendingDestinations = ((userID, dataList) => {
-    if (!dataList.trips.some(trip => trip.userID === userID)) {
+    const filteredDestinations = dataModel.destinations.destinations.filter(dest => {
+        return dataModel.trips.trips.some(trip => {
+            return trip.destinationID === dest.id && trip.userID === currentUser.id
+        })
+    })
+
+    const pastDestinations = filteredDestinations.filter(dest => {
+        return dataModel.trips.trips.some(trip => {
+            return trip.destinationID === dest.id && trip.userID === currentUser.id && trip.status === 'approved' && new Date(trip.date) < new Date()
+        })
+    })
+
+    const pendingDestinations = filteredDestinations.filter(dest => {
+        return dataModel.trips.trips.some(trip => {
+            return trip.destinationID === dest.id && trip.userID === currentUser.id && trip.status === 'pending'
+        })
+    })
+
+    const upcomingDestinations = filteredDestinations.filter(dest => {
+        return dataModel.trips.trips.some(trip => {
+            return trip.destinationID === dest.id && trip.userID === currentUser.id && trip.status === 'approved' && new Date(trip.date) >= new Date()
+        })
+    })
+
+    if (!dataModel.trips.trips.some(trip => trip.userID === currentUser.id)) {
         return 'Invalid User'
     }
-    const pendingDestinations = dataList.trips.filter(trip => {
-        return trip.userID === userID && trip.status === 'pending'
-    })
 
-    if (pendingDestinations.length === 0) {
-        return 'You do not have any pending explorations!'
+    const userTrips = {
+        destinations: {
+            past: pastDestinations,
+            pending: pendingDestinations,
+            upcoming: upcomingDestinations
+        }
     }
 
-    const sortedPendingDestinations = pendingDestinations.sort((a,b) => {
-        const dateA = new Date(a.date).getTime()
-        const dateB = new Date(b.date).getTime()
-        return dateA - dateB
-    })
-    return sortedPendingDestinations
-})
+    return userTrips
+}
 
-const getUserUpcomingDestinations = ((userID, dataList) => {
-    if (!dataList.trips.some(trip => trip.userID === userID)) {
+const calculateYearlyCost = (currentUser, dataModel) => {
+    if (!dataModel || !Array.isArray(dataModel.trips.trips)) {
+        return 'Invalid Data'
+    }
+    if (!dataModel.trips.trips.some(trip => trip.userID === currentUser.id)) {
         return 'Invalid User'
     }
-    const upcomingDestinations = dataList.trips.filter(trip => {
-        return trip.userID === userID && trip.status === 'approved' && new Date(trip.date) > new Date()
-    })
-
-    if (upcomingDestinations.length === 0) {
-        return 'You do not have any upcoming explorations! Time to start exploring!'
-    }
-
-    const sortedUpcomingDestinations = upcomingDestinations.sort((a,b) => {
-        const dateA = new Date(a.date).getTime()
-        const dateB = new Date(b.date).getTime()
-        return dateA - dateB
-    })
-    return sortedUpcomingDestinations
-})
-
-const calculateYearlyCost = (userID, dataList, destinations) => {
-    if (!dataList.trips.some(trip => trip.userID === userID)) {
-        return 'Invalid User'
-    }
-    const tripsYearToDate = dataList.trips.filter(trip => {
+    const tripsYearToDate = dataModel.trips.trips.filter(trip => {
             return (
-                trip.userID === userID &&
+                trip.userID === currentUser.id &&
                 trip.status === 'approved' &&
                 new Date(trip.date) < new Date() &&
                 new Date(trip.date) > new Date('2023/01/01')
@@ -101,7 +76,7 @@ const calculateYearlyCost = (userID, dataList, destinations) => {
     }
     
     const totalCost = tripsYearToDate.reduce((acc, trip) => {
-        const dest = destinations.destinations.find(place => trip.destinationID === place.id)
+        const dest = dataModel.destinations.destinations.find(place => trip.destinationID === place.id)
 
         if (dest) {
             const tripCost =
@@ -111,17 +86,14 @@ const calculateYearlyCost = (userID, dataList, destinations) => {
         } else {
             return acc
         }
-    }, 0);
+    }, 0)
         return totalCost * 1.1
 }
 
 export {
     getUserData,
-    getUserPastDestinations,
-    getUserPendingDestinations,
-    getUserUpcomingDestinations,
     calculateYearlyCost,
-    // userTripsData,
+    getUserTripsData,
     currentUser,
 }
 
