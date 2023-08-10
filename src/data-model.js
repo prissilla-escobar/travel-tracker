@@ -1,3 +1,9 @@
+// import {
+
+import { dataModel } from "./scripts"
+
+// } from './domUpdates'
+
 let currentUser
 
 const getUserData = ((userId, dataList) => {
@@ -90,10 +96,32 @@ const calculateYearlyCost = (currentUser, dataModel) => {
         return totalCost * 1.1
 }
 
+const estimateTripCost = (dataModel) => {
+    const lastIndexPosition = dataModel.trips.trips.length
+    const findRecentPost = dataModel.trips.trips[lastIndexPosition - 1]
+
+    const requestedTrip = dataModel.destinations.destinations.find(trip => trip.id === findRecentPost.destinationID)
+
+    const estimatedCostWithoutAgentFee = (requestedTrip.estimatedLodgingCostPerDay * findRecentPost.duration) + (requestedTrip.estimatedFlightCostPerPerson * findRecentPost.travelers)
+
+    return estimatedCostWithoutAgentFee
+}
+
+const findRecentPostDesination = (dataModel) => {
+    const lastIndexPosition = dataModel.trips.trips.length
+    const findRecentPost = dataModel.trips.trips[lastIndexPosition - 1]
+    const newDestination = findRecentPost.destinationID
+    const destName = dataModel.destinations.destinations.find(place => place.id === newDestination).destination
+
+    return destName
+}
+
 export {
     getUserData,
     calculateYearlyCost,
     getUserTripsData,
+    estimateTripCost,
+    findRecentPostDesination,
     currentUser,
 }
 

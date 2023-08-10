@@ -155,19 +155,20 @@ h3 {
 }
 
 .exploration-request-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80%;
-  width: 20%;
+    display: flex;
+    height: 80%;
+    width: 20%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .exploration-request-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80%;
-  width: 100%;
+  height: 58%;
+  width: 90%;
 }
 
 fieldset {
@@ -177,4 +178,28 @@ fieldset {
   color: #5c55e1;
   font-weight: bold;
   border:3px solid #c9a37c;
+}
+.exploration-request-submit-button {
+  padding: 3px;
+  color:#9ed454;
+  font-weight: bolder;
+  background-color: #5c55e1;
+  margin-top: 3px;
+}
+
+.estimation-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  color:#5c55e1;
+  border: 2px solid #c9a37c;
+  height: 25%;
+  width: 90%;
+}
+
+.estimation-title{
+  display:flex;
+  font-weight: bold;
+  width: 100%;
 }

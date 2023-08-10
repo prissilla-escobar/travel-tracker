@@ -5,7 +5,10 @@ import {
   import {
     calculateYearlyCost,
     getUserTripsData,
+    estimateTripCost,
+    findRecentPostDesination
   } from './data-model'
+import { dataModel } from './scripts'
 
   var destinationOptions = document.querySelector('#destinations')
   var welcome = document.querySelector('.lets-explore')
@@ -13,6 +16,11 @@ import {
   var pastTrips = document.querySelector('.display-past-trips')
   var pendingTrips = document.querySelector('.display-pending-trips')
   var upcomingTrips = document.querySelector('.display-upcoming-trips')
+  var estimationContainer = document.querySelector('.estimation-container')
+  var startingDate = new Date(document.getElementById('date-selection').value)
+  var totalDays = document.getElementById('days-count').value
+  var travelerCount = document.getElementById('traveler-count').value
+  var destination = document.getElementById('destination-list').value
 
   const displayDestinationOptions = () => {
     destinations.forEach(place => {
@@ -69,11 +77,28 @@ import {
       }
   }
 
+  const displayEstimatedTripRequestCost = (dataModel) => {
+    const estimatedCost = estimateTripCost(dataModel)
+    const destination = findRecentPostDesination(dataModel)
+    const agentFee = estimatedCost * 0.1
+    const total = agentFee + estimatedCost
+    estimationContainer.innerHTML = ''
+    estimationContainer.innerHTML += `
+      <div class="estimation-title">Estimated Cost for ${destination} Trip:</div>
+      <div>
+        <text>Subtotal: $${estimatedCost}<text><br>
+        <text>Agent Fee: $${agentFee}<text><br>
+        <text>Grand Total: $${total}<text>
+      </div>
+      `
+  }
+
   const renderPageLoad = (dataModel) => {
     displayDestinationOptions()
     displayUser(dataModel.currentUser)
     displayTotalCost(dataModel.currentUser, dataModel)
     displayTrips(dataModel.currentUser, dataModel)
+    displayEstimatedTripRequestCost(dataModel)
   }
   
   export {
@@ -81,5 +106,10 @@ import {
     displayUser,
     displayTotalCost,
     displayTrips,
-    renderPageLoad
+    renderPageLoad,
+    displayEstimatedTripRequestCost,
+    startingDate,
+    totalDays,
+    travelerCount,
+    destination
   }
